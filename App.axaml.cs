@@ -4,10 +4,10 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using league_mg_viewer.ViewModels;
-using league_mg_viewer.Views;
+using league_mh_viewer.ViewModels;
+using league_mh_viewer.Views;
 
-namespace league_mg_viewer;
+namespace league_mh_viewer;
 
 public partial class App : Application
 {

@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using System;
 
-namespace league_mg_viewer;
+namespace league_mh_viewer;
 
 sealed class Program
 {

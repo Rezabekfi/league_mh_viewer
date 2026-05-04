@@ -2,9 +2,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using league_mg_viewer.ViewModels;
+using league_mh_viewer.ViewModels;
 
-namespace league_mg_viewer;
+namespace league_mh_viewer;
 
 /// <summary>
 /// Given a view model, returns the corresponding view if possible.
