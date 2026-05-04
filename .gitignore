@@ -1,0 +1,81 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Mono / Xamarin
+*.pidb
+*.svclog
+*.scc
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+# Keep NuGet config if needed
+!nuget.config
+
+# Rider
+.idea/
+
+# VS Code settings (optional: comment out if you want to share them)
+.vscode/*
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Test results
+TestResults/
+*.trx
+
+# Coverage
+coverage/
+*.coverage
+*.coveragexml
+
+# Publish output
+publish/
+
+# Azure / deployment
+*.azurePubxml
+*.pubxml
+*.publishproj
+
+# Dotnet tools
+.dotnet/
+
+# Local environment files
+.env
+.env.*
+
+# SQLite / local DBs (optional)
+*.db
+*.sqlite
+
+# Temporary files
+*.tmp
+*.temp
