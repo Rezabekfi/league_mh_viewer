@@ -5,16 +5,16 @@ namespace league_mh_viewer.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    [ObservableProperty]
-    private string greeting = "Hello from Avalonia + CommunityToolkit!";
+  [ObservableProperty]
+  private string greeting = "Hello from Avalonia + CommunityToolkit!";
 
-    [ObservableProperty]
-    private int clickCount;
+  [ObservableProperty]
+  private int clickCount;
 
-    [RelayCommand]
-    private void ChangeGreeting()
-    {
-        ClickCount++;
-        Greeting = $"Button clicked {ClickCount} time(s).";
-    }
+  [RelayCommand]
+  private void ChangeGreeting()
+  {
+      ClickCount++;
+      Greeting = $"Button clicked {ClickCount} time(s).";
+  }
 }
