@@ -9,16 +9,12 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="league_mh_viewer">
 
-    <StackPanel Margin="24" Spacing="16">
-        <TextBlock Text="Avalonia + CommunityToolkit"
-                   FontSize="24"
-                   FontWeight="Bold" />
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
 
-        <TextBlock Text="{Binding Greeting}"
-                   FontSize="16" />
+    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <Button Content="Click me"
-                Command="{Binding ChangeGreetingCommand}"
-                Width="120" />
-    </StackPanel>
 </Window>
