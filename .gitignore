@@ -79,3 +79,6 @@ publish/
 # Temporary files
 *.tmp
 *.temp
+
+# secret files
+appsettings.Development.json
