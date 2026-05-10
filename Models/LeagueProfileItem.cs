@@ -9,4 +9,11 @@ public class LeagueProfileItem
   public string Name { get; set; }
   public RankItem Rank { get; set; }
   public List<MatchItem> MatchHistory { get; set; }
+
+  public LeagueProfileItem(string name, RankItem rank, List<MatchItem> matchHistory)
+  {
+    Name = name;
+    Rank = rank;
+    MatchHistory = matchHistory;
+  }
 }

@@ -26,6 +26,13 @@ public class RankItem
   public Tier Tier { get; set; }
   public Division? Division { get; set; }
   public short LP { get; set; }
+
+  public RankItem(Tier tier, Division? division, short lp)
+  {
+    Tier = tier;
+    Division = division;
+    LP = lp;
+  }
 }
 
 

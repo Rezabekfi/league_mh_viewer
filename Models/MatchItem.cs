@@ -20,6 +20,25 @@ public class MatchItem
   public TimeSpan Duration { get; set; } // this might be changed to another type depending on how the data is represented in the API response
   public List<PlayerGameStats> EnemyTeam { get; set; }
   public List<PlayerGameStats> AllyTeam { get; set; } 
+
+  public MatchItem(bool win, string date, TimeSpan duration, List<PlayerGameStats> enemyTeam, List<PlayerGameStats> allyTeam)
+  {
+    Win = win;
+    Date = date;
+    Duration = duration;
+    EnemyTeam = enemyTeam;
+    AllyTeam = allyTeam;
+  }
+
+  // Parameterless constructor for testing without needing to provide all parameters
+  public MatchItem(){
+    Win = true;
+    Date = "01/01/2024";
+    Duration = TimeSpan.FromMinutes(30);
+    EnemyTeam = new List<PlayerGameStats>();
+    AllyTeam = new List<PlayerGameStats>();
+  }
+
 }
 
 public class PlayerGameStats
@@ -31,4 +50,15 @@ public class PlayerGameStats
   public int Assists { get; set; }
   public int CS { get; set; }
   public Role Role { get; set; }
+
+  public PlayerGameStats(LeagueProfileItem player, string champion, int kills, int deaths, int assists, int cs, Role role)
+  {
+    Player = player;
+    Champion = champion;
+    Kills = kills;
+    Deaths = deaths;
+    Assists = assists;
+    CS = cs;
+    Role = role;
+  }
 }

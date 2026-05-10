@@ -1,0 +1,13 @@
+    <StackPanel Margin="20">
+            <Grid ShowGridLines="True" Margin="5" 
+              ColumnDefinitions="120, 100"
+              RowDefinitions="Auto, Auto">
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10">Name</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="0 5" Text="{Binding Name, Mode=TwoWay}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10">TAG</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="0 5" Text="{Binding Tag, Mode=TwoWay}"/>
+        </Grid>        <TextBlock Text="{Binding SummonerName}" />
+        <Button Content="Click me"
+                Command="{Binding ConfirmNameCommand}" />
+    </StackPanel>
+
