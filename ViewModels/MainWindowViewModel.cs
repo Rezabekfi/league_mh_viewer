@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using league_mh_viewer.Models;
+using league_mh_viewer.ViewModels.Items;
 using System.Collections.Generic;
 using System;
 
@@ -38,15 +39,14 @@ public partial class MainWindowViewModel : ViewModelBase
       AllyTeam = new List<PlayerGameStats>()
     }
   };
-  // public MatchItem(){
-  //   Win = true;
-  //   Date = "01/01/2024";
-  //   Duration = TimeSpan.FromMinutes(30);
-  //   EnemyTeam = new List<PlayerGameStats>();
-  //   AllyTeam = new List<PlayerGameStats>();
-  // }
-
   
+
+  public ObservableCollection<LeagueProfileDisplayItem> Profiles { get; } = new () {
+    new LeagueProfileDisplayItem(new LeagueProfileItem("Player1", new RankItem(Tier.Bronze, Division.II, 20), new List<MatchItem>()), false),
+    new LeagueProfileDisplayItem(new LeagueProfileItem("Player2", new RankItem(Tier.Silver, Division.III, 30), new List<MatchItem>()), true)
+  }; 
+
+  /* My testing code just so I get the hang of the observable properties (some might still be useful and I will leave it here for now if I forget how to do it)
   [ObservableProperty]
   private string _name = "SummonerName";
 
@@ -61,4 +61,5 @@ public partial class MainWindowViewModel : ViewModelBase
   {
     SummonerName = $"{Name}#{Tag}";
   }
+  */
 }
