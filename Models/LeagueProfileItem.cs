@@ -16,6 +16,11 @@ public class LeagueProfileItem
     Rank = rank;
     MatchHistory = matchHistory;
   }
+
+  public override string ToString()
+  {
+    return $"{Name} - {Rank}";
+  }
 }
 
 
