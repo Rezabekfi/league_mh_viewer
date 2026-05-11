@@ -74,5 +74,19 @@
         </ScrollViewer>
       </Border>
     </Grid>
+    
+    <Grid Grid.Row="2" ColumnDefinitions="200,*">
+      <Border Grid.Column="0">
+        <Grid ShowGridLines="True" Margin="5" 
+              ColumnDefinitions="120, 100"
+              RowDefinitions="Auto, Auto, Auto">
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10">Name</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="0 5" Text="{Binding Name, Mode=TwoWay}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10">TAG</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="0 5" Text="{Binding Tag, Mode=TwoWay}"/>
+            <Button Grid.Row="2" Grid.Column="0" Content="Add profile" Command="{Binding AddProfileCommand}" />
+        </Grid>
+      </Border>
+    </Grid>
   </Grid>
 </Window>

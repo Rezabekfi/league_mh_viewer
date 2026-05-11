@@ -70,6 +70,8 @@ public class RiotApiService : IRiotApiService
       encodedName,
       encodedTag
     );
+    
+    Console.WriteLine($"Requesting Riot account with URL: {url}");
 
     var response = await _httpClient.GetAsync(url);
 
@@ -77,6 +79,8 @@ public class RiotApiService : IRiotApiService
     {
       throw new HttpRequestException($"Failed to get Riot account. Status: {response.StatusCode}");
     }
+    
+    Console.WriteLine($"Received response for Riot account: {response.StatusCode}");
 
     string json = await response.Content.ReadAsStringAsync();
 
@@ -86,6 +90,8 @@ public class RiotApiService : IRiotApiService
     {
       throw new InvalidOperationException("Failed to deserialize Riot account response.");
     }
+
+    Console.WriteLine($"Deserialized Riot account: {profileResponse.GameName}#{profileResponse.TagLine}, Puuid: {profileResponse.Puuid}");
 
     RankItem rank = await GetRankAsync(profileResponse.Puuid, region);
     List<MatchItem> matchHistory = await GetMatchHistoryAsync(profileResponse.Puuid, region);
