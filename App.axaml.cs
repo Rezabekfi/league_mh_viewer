@@ -8,6 +8,7 @@ using league_mh_viewer.ViewModels;
 using league_mh_viewer.Views;
 using league_mh_viewer.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using System;
 
 namespace league_mh_viewer;
@@ -22,7 +23,14 @@ public partial class App : Application
 
   public override void OnFrameworkInitializationCompleted()
   { 
+    var configuration = new ConfigurationBuilder()
+      .SetBasePath(AppContext.BaseDirectory)
+      .AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true)
+      .Build();
+
     var serviceCollection = new ServiceCollection();
+
+    serviceCollection.AddSingleton<IConfiguration>(configuration);
     serviceCollection.AddSingleton<IRiotApiService, RiotApiService>();
     serviceCollection.AddTransient<MainWindowViewModel>();
 
