@@ -1,8 +1,8 @@
-using System.Collections.Generic;
+using league_mh_viewer.Services.Responses;
 using System;
+using System.Collections.Generic;
 
 namespace league_mh_viewer.Models;
-
 
 public enum Role
 {
@@ -10,55 +10,43 @@ public enum Role
   JNG,
   MID,
   ADC,
-  SUP 
+  SUP,
+  UNKNOWN
 }
 
 public class MatchItem
 {
   public bool Win { get; set; }
-  public string Date { get; set; }
-  public TimeSpan Duration { get; set; } // this might be changed to another type depending on how the data is represented in the API response
-  public List<PlayerGameStats> EnemyTeam { get; set; }
-  public List<PlayerGameStats> AllyTeam { get; set; } 
-
-  public MatchItem(bool win, string date, TimeSpan duration, List<PlayerGameStats> enemyTeam, List<PlayerGameStats> allyTeam)
-  {
-    Win = win;
-    Date = date;
-    Duration = duration;
-    EnemyTeam = enemyTeam;
-    AllyTeam = allyTeam;
-  }
-
-  // Parameterless constructor for testing without needing to provide all parameters
-  public MatchItem(){
-    Win = true;
-    Date = "01/01/2024";
-    Duration = TimeSpan.FromMinutes(30);
-    EnemyTeam = new List<PlayerGameStats>();
-    AllyTeam = new List<PlayerGameStats>();
-  }
-
+  public string Date { get; set; } = string.Empty;
+  public TimeSpan Duration { get; set; }
+  public List<PlayerGameStats> EnemyTeam { get; set; } = new();
+  public List<PlayerGameStats> AllyTeam { get; set; } = new();
 }
 
 public class PlayerGameStats
 {
-  public LeagueProfileItem Player { get; set; } // This might cause a circular reference (most likely is)
-  public string Champion { get; set; }
+  public string SummonerName { get; set; } = string.Empty;
+  public string ChampionName { get; set; } = string.Empty;
   public int Kills { get; set; }
   public int Deaths { get; set; }
   public int Assists { get; set; }
   public int CS { get; set; }
-  public Role Role { get; set; }
+  public Role Role { get; set; } = Role.UNKNOWN;
 
-  public PlayerGameStats(LeagueProfileItem player, string champion, int kills, int deaths, int assists, int cs, Role role)
+  public static PlayerGameStats FromParticipant(MatchParticipant participant)
   {
-    Player = player;
-    Champion = champion;
-    Kills = kills;
-    Deaths = deaths;
-    Assists = assists;
-    CS = cs;
-    Role = role;
+    return new PlayerGameStats
+    {
+      SummonerName = !string.IsNullOrWhiteSpace(participant.RiotIdGameName)
+        ? $"{participant.RiotIdGameName}#{participant.RiotIdTagLine}"
+        : participant.SummonerName,
+
+      ChampionName = participant.ChampionName,
+      Kills = participant.Kills,
+      Deaths = participant.Deaths,
+      Assists = participant.Assists,
+      CS = participant.TotalMinionsKilled + participant.NeutralMinionsKilled,
+      Role = Role.UNKNOWN
+    };
   }
 }

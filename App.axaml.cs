@@ -21,9 +21,7 @@ public partial class App : Application
 
 
   public override void OnFrameworkInitializationCompleted()
-  {
-  
-
+  { 
     var serviceCollection = new ServiceCollection();
     serviceCollection.AddSingleton<IRiotApiService, RiotApiService>();
     serviceCollection.AddTransient<MainWindowViewModel>();

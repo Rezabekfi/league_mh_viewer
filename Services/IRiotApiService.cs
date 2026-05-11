@@ -6,7 +6,7 @@ namespace league_mh_viewer.Services;
 
 public interface IRiotApiService
 {
-    Task<LeagueProfileItem> GetLeagueProfileAsync(string summonerName, string tag); 
+    Task<LeagueProfileItem> GetLeagueProfileAsync(string summonerName, string tag, Region region); 
 
-    Task<List<MatchItem>> GetMatchHistoryAsync(string puuid);
+    Task<List<MatchItem>> GetMatchHistoryAsync(string puuid, Region region);
 }
