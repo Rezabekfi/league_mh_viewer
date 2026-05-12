@@ -1,92 +1,30 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:league_mh_viewer.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        d:DesignWidth="800"
-        d:DesignHeight="450"
+        xmlns:profiles="using:league_mh_viewer.Views.Profiles"
+        xmlns:matches="using:league_mh_viewer.Views.Matches"
         x:Class="league_mh_viewer.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="league_mh_viewer">
+        Width="1000"
+        Height="650"
+        MinWidth="850"
+        MinHeight="520"
+        Title="League Match History">
 
-  <Grid RowDefinitions="Auto,*">
-    <Menu Grid.Row="0" />
+  <Grid Background="#0F1117" RowDefinitions="Auto,*">
+    <Border Grid.Row="0" Background="#151821" Padding="20 14">
+      <TextBlock Text="League Match History" Classes="title" />
+    </Border>
 
-    <DockPanel>
-      <Menu DockPanel.Dock="Top">
-        <MenuItem Header="_File">
-          <MenuItem Header="_Open..." />
-          <Separator />
-          <MenuItem Header="_Exit" />
-        </MenuItem>
+    <Grid Grid.Row="1"
+          ColumnDefinitions="280,*"
+          Margin="20"
+          ColumnSpacing="20">
 
-        <MenuItem Header="_Edit">
-          <MenuItem Header="Copy" />
-          <MenuItem Header="Paste" />
-        </MenuItem>
-      </Menu>
+      <profiles:ProfilesPanel DataContext="{Binding ProfilesPanel}" />
 
-      <TextBlock />
-    </DockPanel>
-
-    <Grid Grid.Row="1" ColumnDefinitions="200,*">
-      <Border Grid.Column="0">
-        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
-          <ItemsControl ItemsSource="{Binding Profiles}">
-            <ItemsControl.ItemTemplate>
-              <DataTemplate>
-                 <Border Margin="0,10,0,0"
-                        CornerRadius="5"
-                        BorderBrush="Gray" BorderThickness="1"
-                        Padding="5">
-                  <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Profile.Name}" />
-                    <TextBlock Margin="5 0" FontWeight="Bold"
-                               Text="{Binding Profile.Rank}" />
-                  </StackPanel>
-                </Border>
-              </DataTemplate>
-            </ItemsControl.ItemTemplate>
-          </ItemsControl>
-        </ScrollViewer>
-      </Border>
-
-      <Border Grid.Column="1">
-        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
-          <ItemsControl ItemsSource="{Binding MatchHistory}">
-            <ItemsControl.ItemTemplate>
-              <DataTemplate>
-                <Border Margin="0,10,0,0"
-                        CornerRadius="5"
-                        BorderBrush="Gray" BorderThickness="1"
-                        Padding="5">
-                  <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Win}" />
-                    <TextBlock Margin="5 0" FontWeight="Bold"
-                               Text="{Binding Date}" />
-                  </StackPanel>
-                </Border>
-              </DataTemplate>
-            </ItemsControl.ItemTemplate>
-          </ItemsControl>
-        </ScrollViewer>
-      </Border>
-    </Grid>
-    
-    <Grid Grid.Row="2" ColumnDefinitions="200,*">
-      <Border Grid.Column="0">
-        <Grid ShowGridLines="True" Margin="5" 
-              ColumnDefinitions="120, 100"
-              RowDefinitions="Auto, Auto, Auto">
-            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10">Name</TextBlock>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="0 5" Text="{Binding Name, Mode=TwoWay}"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10">TAG</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="0 5" Text="{Binding Tag, Mode=TwoWay}"/>
-            <Button Grid.Row="2" Grid.Column="0" Content="Add profile" Command="{Binding AddProfileCommand}" />
-        </Grid>
-      </Border>
+      <matches:MatchHistoryPanel Grid.Column="1"
+                                 DataContext="{Binding MatchHistory}" />
     </Grid>
   </Grid>
 </Window>

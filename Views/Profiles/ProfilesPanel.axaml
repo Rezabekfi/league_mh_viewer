@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:league_mh_viewer.ViewModels"
+             xmlns:profiles="using:league_mh_viewer.Views.Profiles"
+             x:Class="league_mh_viewer.Views.Profiles.ProfilesPanel"
+             x:DataType="vm:ProfilesPanelViewModel">
+
+  <Border Background="#151821" CornerRadius="16" Padding="16">
+    <Grid RowDefinitions="Auto,Auto,*">
+      <TextBlock Text="Profiles" Classes="section" />
+
+      <StackPanel Grid.Row="1" Spacing="8" Margin="0 0 0 16">
+        <TextBox Watermark="Riot name"
+                 Text="{Binding Name, Mode=TwoWay}" />
+
+        <TextBox Watermark="Tag"
+                 Text="{Binding Tag, Mode=TwoWay}" />
+
+        <Button Content="Add profile"
+                Classes="primary"
+                Command="{Binding AddProfileCommand}" />
+      </StackPanel>
+
+      <ListBox Grid.Row="2"
+               ItemsSource="{Binding Profiles}"
+               Background="Transparent"
+               BorderThickness="0">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <profiles:ProfileCard />
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Grid>
+  </Border>
+</UserControl>

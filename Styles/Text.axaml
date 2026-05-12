@@ -1,0 +1,17 @@
+<Styles xmlns="https://github.com/avaloniaui">
+  <Style Selector="TextBlock.title">
+    <Setter Property="FontSize" Value="22" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+
+  <Style Selector="TextBlock.section">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Margin" Value="0 0 0 12" />
+  </Style>
+
+  <Style Selector="TextBlock.muted">
+    <Setter Property="Foreground" Value="#9AA4B2" />
+    <Setter Property="FontSize" Value="12" />
+  </Style>
+</Styles>

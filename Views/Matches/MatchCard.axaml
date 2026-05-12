@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:items="using:league_mh_viewer.Models"
+             x:Class="league_mh_viewer.Views.Matches.MatchCard"
+             x:DataType="items:MatchItem">
+
+  <Border Classes="card">
+    <Grid ColumnDefinitions="Auto,*,Auto">
+
+      <Border Width="6"
+              CornerRadius="3"
+              Background="{StaticResource BrushPrimary}" />
+
+      <StackPanel Grid.Column="1"
+                  Margin="12 0">
+
+        <TextBlock Text="{Binding Win}"
+                   FontSize="16"
+                   FontWeight="SemiBold" />
+
+        <TextBlock Text="{Binding Date}"
+                   Classes="muted" />
+
+      </StackPanel>
+
+      <TextBlock Grid.Column="2"
+                 Text="›"
+                 FontSize="24"
+                 Foreground="{StaticResource BrushTextMuted}" />
+
+    </Grid>
+  </Border>
+</UserControl>

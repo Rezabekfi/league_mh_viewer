@@ -1,25 +1,20 @@
 ﻿using league_mh_viewer.Services;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
-using league_mh_viewer.Models;
-using league_mh_viewer.ViewModels.Items;
-using System.Collections.Generic;
-using System;
 
 namespace league_mh_viewer.ViewModels;
 
 
-public partial class MainWindowViewModel : ViewModelBase 
+public partial class MainWindowViewModel : ViewModelBase
 {
+    public ProfilesPanelViewModel ProfilesPanel { get; }
+    public MatchHistoryPanelViewModel MatchHistory { get; }
 
-  private readonly IRiotApiService _riotApiService;
-
-  public MainWindowViewModel(IRiotApiService riotApiService)
-  {
-    _riotApiService = riotApiService;
-  }
-
+    public MainWindowViewModel(IRiotApiService riotApiService)
+    {
+        MatchHistory = new MatchHistoryPanelViewModel();
+        ProfilesPanel = new ProfilesPanelViewModel(riotApiService, MatchHistory);
+    }
+}
+  /*
   public ObservableCollection<MatchItem> MatchHistory { get; } = new ObservableCollection<MatchItem>();
 
   public ObservableCollection<LeagueProfileDisplayItem> Profiles { get; } = new ObservableCollection<LeagueProfileDisplayItem>();
@@ -62,4 +57,5 @@ public partial class MainWindowViewModel : ViewModelBase
   {
 
   }
-}
+  */
+

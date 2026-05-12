@@ -8,8 +8,17 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-  
+
+    <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="avares://league_mh_viewer/Styles/Colors.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>  
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="avares://league_mh_viewer/Styles/Text.axaml" />
+        <StyleInclude Source="avares://league_mh_viewer/Styles/Controls.axaml" />
     </Application.Styles>
 </Application>

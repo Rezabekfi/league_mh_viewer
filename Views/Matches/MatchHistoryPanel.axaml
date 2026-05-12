@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:league_mh_viewer.ViewModels"
+             xmlns:items="using:league_mh_viewer.Models"
+             xmlns:matches="using:league_mh_viewer.Views.Matches"
+             x:Class="league_mh_viewer.Views.Matches.MatchHistoryPanel"
+             x:DataType="vm:MatchHistoryPanelViewModel">
+
+  <Border Background="#151821" CornerRadius="16" Padding="16">
+    <Grid RowDefinitions="Auto,*">
+      <Grid ColumnDefinitions="*,Auto" Margin="0 0 0 16">
+        <StackPanel>
+          <TextBlock Text="Match history" Classes="title" />
+          <TextBlock Text="Recent games for the selected profile"
+                     Classes="muted" />
+        </StackPanel>
+      </Grid>
+
+      <ListBox Grid.Row="1"
+         ItemsSource="{Binding Matches}"
+         Background="Transparent"
+         BorderThickness="0">
+
+  <ListBox.ItemTemplate>
+    <DataTemplate x:DataType="items:MatchItem">
+      <matches:MatchCard />
+    </DataTemplate>
+  </ListBox.ItemTemplate>
+
+</ListBox>    </Grid>
+  </Border>
+</UserControl>
