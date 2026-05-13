@@ -10,10 +10,10 @@
       <TextBlock Text="Profiles" Classes="section" />
 
       <StackPanel Grid.Row="1" Spacing="8" Margin="0 0 0 16">
-        <TextBox Watermark="Riot name"
+        <TextBox PlaceholderText="Riot name"
                  Text="{Binding Name, Mode=TwoWay}" />
 
-        <TextBox Watermark="Tag"
+        <TextBox PlaceholderText="Tag"
                  Text="{Binding Tag, Mode=TwoWay}" />
 
         <Button Content="Add profile"

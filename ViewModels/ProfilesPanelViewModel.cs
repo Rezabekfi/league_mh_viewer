@@ -17,10 +17,10 @@ public partial class ProfilesPanelViewModel : ViewModelBase
     public ObservableCollection<LeagueProfileDisplayItem> Profiles { get; } = new();
 
     [ObservableProperty]
-    private string _name = "SummonerName";
+    private string _name = "";
 
     [ObservableProperty]
-    private string _tag = "EUW";
+    private string _tag = "";
 
     public ProfilesPanelViewModel(
         IRiotApiService riotApiService,

@@ -19,11 +19,11 @@
   </Style>
 
   <Style Selector="Border.card.win">
-    <Setter Property="Background" Value="#63c8dc" />
+    <Setter Property="Background" Value="{StaticResource BrushCardWin}" />
   </Style>
   
   <Style Selector="Border.card.loss">
-    <Setter Property="Background" Value="#dd5e2b" />
+    <Setter Property="Background" Value="{StaticResource BrushCardLoss}" />
   </Style>
 
 </Styles>
