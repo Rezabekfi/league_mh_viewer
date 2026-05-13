@@ -7,6 +7,8 @@
   <Color x:Key="ColorCardHover">#222633</Color>
   <Color x:Key="ColorPrimary">#4F8CFF</Color>
   <Color x:Key="ColorTextMuted">#9AA4B2</Color>
+  <Color x:Key="ColorCardWin">#153e66</Color>
+  <Color x:Key="ColorCardLoss">#5c1313</Color>
 
   <SolidColorBrush x:Key="BrushBackground" Color="{StaticResource ColorBackground}" />
   <SolidColorBrush x:Key="BrushSurface" Color="{StaticResource ColorSurface}" />
@@ -14,5 +16,7 @@
   <SolidColorBrush x:Key="BrushCardHover" Color="{StaticResource ColorCardHover}" />
   <SolidColorBrush x:Key="BrushPrimary" Color="{StaticResource ColorPrimary}" />
   <SolidColorBrush x:Key="BrushTextMuted" Color="{StaticResource ColorTextMuted}" />
+  <SolidColorBrush x:Key="BrushCardWin" Color="{StaticResource ColorCardWin}" />
+  <SolidColorBrush x:Key="BrushCardLoss" Color="{StaticResource ColorCardLoss}" />
 
 </ResourceDictionary>

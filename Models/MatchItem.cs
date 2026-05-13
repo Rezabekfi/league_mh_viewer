@@ -19,8 +19,11 @@ public class MatchItem
   public bool Win { get; set; }
   public string Date { get; set; } = string.Empty;
   public TimeSpan Duration { get; set; }
+  public PlayerGameStats PlayerStats { get; set; } = new();
   public List<PlayerGameStats> EnemyTeam { get; set; } = new();
   public List<PlayerGameStats> AllyTeam { get; set; } = new();
+
+  public string Result => Win ? "Victory" : "Defeat";
 }
 
 public class PlayerGameStats

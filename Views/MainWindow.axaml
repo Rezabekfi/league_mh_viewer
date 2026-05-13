@@ -11,8 +11,8 @@
         MinHeight="520"
         Title="League Match History">
 
-  <Grid Background="#0F1117" RowDefinitions="Auto,*">
-    <Border Grid.Row="0" Background="#151821" Padding="20 14">
+  <Grid Background="{StaticResource BrushBackground}" RowDefinitions="Auto,*">
+    <Border Grid.Row="0" Background="{StaticResource BrushSurface}" Padding="20 14">
       <TextBlock Text="League Match History" Classes="title" />
     </Border>
 

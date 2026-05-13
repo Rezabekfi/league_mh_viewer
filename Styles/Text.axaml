@@ -11,7 +11,19 @@
   </Style>
 
   <Style Selector="TextBlock.muted">
-    <Setter Property="Foreground" Value="#9AA4B2" />
+    <Setter Property="Foreground" Value="{StaticResource ColorTextMuted}" />
     <Setter Property="FontSize" Value="12" />
   </Style>
+
+  <Style Selector="TextBlock.champion">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+
+  <Style Selector="TextBlock.result">
+    <Setter Property="FontSize" Value="18" />
+    <Setter Property="FontWeight" Value="Bold" />
+  </Style>
+
+  
 </Styles>
