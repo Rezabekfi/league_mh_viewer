@@ -7,7 +7,7 @@
   <Color x:Key="ColorCardHover">#222633</Color>
   <Color x:Key="ColorPrimary">#4F8CFF</Color>
   <Color x:Key="ColorTextMuted">#9AA4B2</Color>
-  <Color x:Key="ColorCardWin">#153e66</Color>
+  <Color x:Key="ColorCardWin">#227a27</Color>
   <Color x:Key="ColorCardLoss">#5c1313</Color>
 
   <SolidColorBrush x:Key="BrushBackground" Color="{StaticResource ColorBackground}" />

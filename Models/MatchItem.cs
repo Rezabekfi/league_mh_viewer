@@ -18,6 +18,7 @@ public class MatchItem
 {
   public bool Win { get; set; }
   public string Date { get; set; } = string.Empty;
+  public long GameCreation { get; set; }
   public TimeSpan Duration { get; set; }
   public PlayerGameStats PlayerStats { get; set; } = new();
   public List<PlayerGameStats> EnemyTeam { get; set; } = new();
@@ -35,6 +36,7 @@ public class PlayerGameStats
   public int Assists { get; set; }
   public int CS { get; set; }
   public Role Role { get; set; } = Role.UNKNOWN;
+  public string ScoreText => $"{Kills}/{Deaths}/{Assists}";
 
   public static PlayerGameStats FromParticipant(MatchParticipant participant)
   {

@@ -1,4 +1,5 @@
 <Styles xmlns="https://github.com/avaloniaui">
+
   <Style Selector="Border.card">
     <Setter Property="Background" Value="{StaticResource BrushCard}" />
     <Setter Property="CornerRadius" Value="12" />

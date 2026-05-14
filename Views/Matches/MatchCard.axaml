@@ -9,12 +9,13 @@
   Classes.win="{Binding Win}"
   Classes.loss="{Binding !Win}"
   >
-    <Grid ColumnDefinitions="Auto,*,Auto">
+    <Grid ColumnDefinitions="*,*,*,Auto">
 
       <Border Width="6"
-              CornerRadius="3" />
+              CornerRadius="3"/>
 
-      <StackPanel Grid.Column="1"
+
+      <StackPanel Grid.Column="0"
                   Margin="12 0">
 
         <TextBlock Text="{Binding Result}" Classes="result"/>
@@ -24,10 +25,22 @@
 
       </StackPanel>
 
-      <TextBlock Grid.Column="2"
-                 Text="›"
-                 FontSize="24"
-                 Foreground="{StaticResource BrushTextMuted}" />
+      <StackPanel Grid.Column="1" Orientation="Horizontal">
+
+        <TextBlock Text="Score" />
+        <TextBlock Text="{Binding PlayerStats.ScoreText}" />
+      
+      </StackPanel>
+
+      <StackPanel Grid.Column="2" Margin="12 0">
+
+      <TextBlock Text="CS"/>
+      <TextBlock Text="{Binding PlayerStats.CS}"/>
+      
+      </StackPanel>
+      <Button Grid.Column="3" Classes="primary" >
+        <PathIcon Data="{StaticResource arrow_sync_circle_regular}" Width="16" Height="16" />
+      </Button>
 
     </Grid>
   </Border>

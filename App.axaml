@@ -13,6 +13,7 @@
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceInclude Source="avares://league_mh_viewer/Styles/Colors.axaml" />
+        <ResourceInclude Source="avares://league_mh_viewer/Styles/Icons.axaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Application.Resources>  
