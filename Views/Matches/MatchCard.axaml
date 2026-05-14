@@ -1,51 +1,44 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:items="using:league_mh_viewer.ViewModels.Items"
+             xmlns:vm="using:league_mh_viewer.ViewModels"
              x:Class="league_mh_viewer.Views.Matches.MatchCard"
-             x:DataType="items:LeagueMatchDisplayItem">
+             x:DataType="vm:MatchCardViewModel">
 
-  <Border 
-  Classes="card"
-  Classes.win="{Binding Match.Win}"
-  Classes.loss="{Binding !Match.Win}"
-  >
-  <Expander IsExpanded="{Binding IsExpanded}">
-  <Expander.Header>
-    <Grid ColumnDefinitions="*,*,*,Auto">
+<Border Classes="card"
+        Classes.win="{Binding Match.Win}"
+        Classes.loss="{Binding !Match.Win}">
 
-      <Border Width="6"
-              CornerRadius="3"/>
+    <StackPanel>
+        <Grid ColumnDefinitions="*,*,*,Auto">
 
+            <StackPanel Grid.Column="0" Margin="12 0">
+                <TextBlock Text="{Binding Result}" Classes="result"/>
+                <TextBlock Text="{Binding Match.PlayerStats.ChampionName}"
+                           Classes="champion"/>
+            </StackPanel>
 
-      <StackPanel Grid.Column="0"
-                  Margin="12 0">
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="Score"/>
+                <TextBlock Text="{Binding Match.PlayerStats.ScoreText}"/>
+            </StackPanel>
 
-        <TextBlock Text="{Binding Result}" Classes="result"/>
+            <StackPanel Grid.Column="2" Margin="12 0">
+                <TextBlock Text="CS"/>
+                <TextBlock Text="{Binding Match.PlayerStats.CS}"/>
+            </StackPanel>
 
-        <TextBlock Text="{Binding Match.PlayerStats.ChampionName}"
-                   Classes="champion" />
+            <Button Grid.Column="3"
+                    Classes="primary"
+                    Command="{Binding ToggleExpandedCommand}">
+                <PathIcon Data="{StaticResource arrow_sync_circle_regular}"
+                          Width="16"
+                          Height="16"/>
+            </Button>
+        </Grid>
 
-      </StackPanel>
-
-      <StackPanel Grid.Column="1" Orientation="Horizontal">
-
-        <TextBlock Text="Score" />
-        <TextBlock Text="{Binding Match.PlayerStats.ScoreText}" />
-      
-      </StackPanel>
-
-      <StackPanel Grid.Column="2" Margin="12 0">
-
-      <TextBlock Text="CS"/>
-      <TextBlock Text="{Binding Match.PlayerStats.CS}"/>
-      
-      </StackPanel>
-      <Button Grid.Column="3" Classes="primary" Command="{Binding ToggleExpanded}" >
-        <PathIcon Data="{StaticResource arrow_sync_circle_regular}" Width="16" Height="16" />
-      </Button>
-    </Grid>
-  </Expander.Header>
-  <TextBlock Text="Yo"/>
-  </Expander>
-  </Border>
-</UserControl>
+        <StackPanel IsVisible="{Binding IsExpanded}"
+                    Margin="12 12 12 0">
+            <TextBlock Text="Yo"/>
+        </StackPanel>
+    </StackPanel>
+</Border></UserControl>

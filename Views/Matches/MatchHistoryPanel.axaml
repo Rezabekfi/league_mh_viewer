@@ -22,7 +22,7 @@
          BorderThickness="0">
 
   <ListBox.ItemTemplate>
-    <DataTemplate x:DataType="items:LeagueMatchDisplayItem">
+    <DataTemplate x:DataType="vm:MatchCardViewModel">
       <matches:MatchCard />
     </DataTemplate>
   </ListBox.ItemTemplate>
