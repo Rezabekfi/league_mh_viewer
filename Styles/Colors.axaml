@@ -9,6 +9,7 @@
   <Color x:Key="ColorTextMuted">#9AA4B2</Color>
   <Color x:Key="ColorCardWin">#227a27</Color>
   <Color x:Key="ColorCardLoss">#5c1313</Color>
+  <Color x:Key="ColorCardSelected">#222633</Color>
 
   <SolidColorBrush x:Key="BrushBackground" Color="{StaticResource ColorBackground}" />
   <SolidColorBrush x:Key="BrushSurface" Color="{StaticResource ColorSurface}" />
@@ -18,5 +19,7 @@
   <SolidColorBrush x:Key="BrushTextMuted" Color="{StaticResource ColorTextMuted}" />
   <SolidColorBrush x:Key="BrushCardWin" Color="{StaticResource ColorCardWin}" />
   <SolidColorBrush x:Key="BrushCardLoss" Color="{StaticResource ColorCardLoss}" />
+  <SolidColorBrush x:Key="BrushCardSelected" Color="{StaticResource ColorCardSelected}" />
+
 
 </ResourceDictionary>

@@ -5,7 +5,7 @@
              x:Class="league_mh_viewer.Views.Profiles.ProfilesPanel"
              x:DataType="vm:ProfilesPanelViewModel">
 
-  <Border Background="#151821" CornerRadius="16" Padding="16">
+  <Border Background="{StaticResource BrushSurface}" CornerRadius="16" Padding="16">
     <Grid RowDefinitions="Auto,Auto,*">
       <TextBlock Text="Profiles" Classes="section" />
 
@@ -21,16 +21,26 @@
                 Command="{Binding AddProfileCommand}" />
       </StackPanel>
 
-      <ListBox Grid.Row="2"
-               ItemsSource="{Binding Profiles}"
-               Background="Transparent"
-               BorderThickness="0">
-        <ListBox.ItemTemplate>
-          <DataTemplate>
-            <profiles:ProfileCard />
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
+<ScrollViewer Grid.Row="2"
+              VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled">
+
+    <ItemsControl ItemsSource="{Binding Profiles}">
+
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Spacing="8"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <profiles:ProfileCard />
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+
+    </ItemsControl>
+</ScrollViewer>
     </Grid>
   </Border>
 </UserControl>
