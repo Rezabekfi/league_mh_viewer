@@ -23,14 +23,13 @@ public class MatchItem
   public PlayerGameStats PlayerStats { get; set; } = new();
   public List<PlayerGameStats> EnemyTeam { get; set; } = new();
   public List<PlayerGameStats> AllyTeam { get; set; } = new();
-
-  public string Result => Win ? "Victory" : "Defeat";
 }
 
 public class PlayerGameStats
 {
   public string SummonerName { get; set; } = string.Empty;
   public string ChampionName { get; set; } = string.Empty;
+  public string Puuid { get; set; } = string.Empty;
   public int Kills { get; set; }
   public int Deaths { get; set; }
   public int Assists { get; set; }
@@ -45,7 +44,7 @@ public class PlayerGameStats
       SummonerName = !string.IsNullOrWhiteSpace(participant.RiotIdGameName)
         ? $"{participant.RiotIdGameName}#{participant.RiotIdTagLine}"
         : participant.SummonerName,
-
+      Puuid = participant.Puuid,
       ChampionName = participant.ChampionName,
       Kills = participant.Kills,
       Deaths = participant.Deaths,

@@ -6,36 +6,48 @@
              x:Class="league_mh_viewer.Views.Matches.MatchHistoryPanel"
              x:DataType="vm:MatchHistoryPanelViewModel">
 
-  <Border Background="{StaticResource BrushSurface}" CornerRadius="16" Padding="16">
+  <Border Background="{StaticResource BrushSurface}"
+          CornerRadius="16"
+          Padding="16">
+
     <Grid RowDefinitions="Auto,*">
-      <Grid ColumnDefinitions="*,Auto" Margin="0 0 0 16">
-        <StackPanel>
-          <TextBlock Text="Match history" Classes="title" />
+      <Grid ColumnDefinitions="*,Auto"
+            Margin="0 0 0 16">
+
+        <StackPanel Grid.Column="0">
+          <TextBlock Text="Match history"
+                     Classes="title" />
+
           <TextBlock Text="Recent games for the selected profile"
                      Classes="muted" />
         </StackPanel>
-      </Grid>
-
-<ScrollViewer Grid.Row="1"
-              VerticalScrollBarVisibility="Auto"
-              HorizontalScrollBarVisibility="Disabled">
-
-      <ItemsControl 
-         ItemsSource="{Binding Matches}">
-
-<ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <StackPanel Spacing="8"/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-  <ItemsControl.ItemTemplate>
-    <DataTemplate x:DataType="vm:MatchCardViewModel">
-      <matches:MatchCard />
-    </DataTemplate>
-  </ItemsControl.ItemTemplate>
-
-</ItemsControl>
-</ScrollViewer>
+        <Button Grid.Column="1"
+        Classes="primary"
+        Command="{ReflectionBinding $parent[Window].DataContext.RefreshGamesCommand}">
+    <PathIcon Data="{StaticResource arrow_sync_circle_regular}"
+              Width="16"
+              Height="16" />
+</Button>
 </Grid>
+
+      <ScrollViewer Grid.Row="1"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Disabled">
+
+        <ItemsControl ItemsSource="{Binding Matches}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Spacing="8" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="vm:MatchCardViewModel">
+              <matches:MatchCard />
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </ScrollViewer>
+    </Grid>
   </Border>
 </UserControl>

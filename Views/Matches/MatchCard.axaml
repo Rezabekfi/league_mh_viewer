@@ -4,44 +4,62 @@
              x:Class="league_mh_viewer.Views.Matches.MatchCard"
              x:DataType="vm:MatchCardViewModel">
 
-<Border Classes="card"
-        Classes.win="{Binding Match.Win}"
-        Classes.loss="{Binding !Match.Win}">
+  <Border Classes="card"
+          Classes.win="{Binding Match.Win}"
+          Classes.loss="{Binding !Match.Win}">
 
     <StackPanel>
-        <Grid ColumnDefinitions="*,*,*,Auto">
+      <Grid ColumnDefinitions="*,*,*,Auto">
+        <StackPanel Grid.Column="0"
+                    Margin="12 0">
 
-            <StackPanel Grid.Column="0" Margin="12 0">
-                <TextBlock Text="{Binding Result}" Classes="result"/>
-                <TextBlock Text="{Binding Match.PlayerStats.ChampionName}"
-                           Classes="champion"/>
-            </StackPanel>
+          <TextBlock Text="{Binding Result}"
+                     Classes="result" />
 
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="Score"/>
-                <TextBlock Text="{Binding Match.PlayerStats.ScoreText}"/>
-            </StackPanel>
+          <TextBlock Text="{Binding Match.PlayerStats.ChampionName}"
+                     Classes="champion" />
+        </StackPanel>
 
-            <StackPanel Grid.Column="2" Margin="12 0">
-                <TextBlock Text="CS"/>
-                <TextBlock Text="{Binding Match.PlayerStats.CS}"/>
-            </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Orientation="Horizontal">
 
-            <Button Grid.Column="3"
-                    Classes="primary"
-                    Command="{Binding ToggleExpandedCommand}">
-                <PathIcon Data="{Binding ExpandIcon}"
-                          Width="16"
-                          Height="16"/>
-            </Button>
-        </Grid>
+          <TextBlock Text="Score" />
+          <TextBlock Text="{Binding Match.PlayerStats.ScoreText}" />
+        </StackPanel>
 
-        <Grid ColumnDefinitions="*,*,*,*" IsVisible="{Binding IsExpanded}"
-                    Margin="12 12 12 0">
-                    <TextBlock Grid.Column="0" Text="YO"/>
-                    <TextBlock Grid.Column="1" Text="YO"/>
-                    <TextBlock Grid.Column="2" Text="YO"/>
-                    <TextBlock Grid.Column="3" Text="YO"/>
-        </Grid>
+        <StackPanel Grid.Column="2"
+                    Margin="12 0">
+
+          <TextBlock Text="CS" />
+          <TextBlock Text="{Binding Match.PlayerStats.CS}" />
+        </StackPanel>
+
+        <Button Grid.Column="3"
+                Classes="primary"
+                Command="{Binding ToggleExpandedCommand}">
+
+          <PathIcon Data="{Binding ExpandIcon}"
+                    Width="16"
+                    Height="16" />
+        </Button>
+      </Grid>
+
+      <Grid ColumnDefinitions="*,*,*,*"
+            IsVisible="{Binding IsExpanded}"
+            Margin="12 12 12 0">
+
+        <TextBlock Grid.Column="0"
+                   Text="YO" />
+
+        <TextBlock Grid.Column="1"
+                   Text="YO" />
+
+        <TextBlock Grid.Column="2"
+                   Text="YO" />
+
+        <TextBlock Grid.Column="3"
+                   Text="YO" />
+      </Grid>
     </StackPanel>
-</Border></UserControl>
+  </Border>
+</UserControl>

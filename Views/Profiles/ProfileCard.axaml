@@ -1,17 +1,20 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="using:league_mh_viewer.ViewModels.Items"
+             xmlns:vm="using:league_mh_viewer.ViewModels"
              x:Class="league_mh_viewer.Views.Profiles.ProfileCard"
-             x:DataType="vm:LeagueProfileDisplayItem">
+             x:DataType="vm:ProfileCardViewModel">
 
   <Border Classes="card">
-    <StackPanel>
-      <TextBlock Text="{Binding Profile.Name}"
-                 FontWeight="SemiBold"
-                 FontSize="15" />
+    <Grid ColumnDefinitions="*,Auto">
+      <StackPanel Grid.Column="0">
+        <TextBlock Text="{Binding Profile.Name}"
+                   FontWeight="SemiBold"
+                   FontSize="15" />
 
-      <TextBlock Text="{Binding Profile.Rank}"
-                 Classes="muted" />
-    </StackPanel>
+        <TextBlock Text="{Binding Profile.Rank}"
+                   Classes="muted" />
+      </StackPanel>
+      <ToggleSwitch Grid.Column="1" IsChecked="{Binding IsSelected}" OnContent="" OffContent=""/>
+    </Grid>
   </Border>
 </UserControl>

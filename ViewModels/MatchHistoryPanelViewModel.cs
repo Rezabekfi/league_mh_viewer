@@ -1,4 +1,3 @@
-using league_mh_viewer.ViewModels.Items;
 using league_mh_viewer.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,5 +34,19 @@ public partial class MatchHistoryPanelViewModel : ViewModelBase
       Matches.Add(match);
     }
   }
-  
+
+  public void RefreshMatches(IEnumerable<MatchItem> matches)
+  {
+    var displayItems = ConvertToDisplayItems(matches);
+    ReplaceMatches(displayItems);
+  }
+
+  public void RemoveMatchesForProfile(LeagueProfileItem profile)
+  {
+    var matchesToRemove = Matches.Where(m => m.Match.AllyTeam.Any(p => p.Puuid == profile.Puuid)).ToList();
+    foreach (var match in matchesToRemove)
+    {
+      Matches.Remove(match);
+    }
+  }
 }

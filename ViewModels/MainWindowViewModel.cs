@@ -1,4 +1,7 @@
 ﻿using league_mh_viewer.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System.Threading.Tasks;
 
 namespace league_mh_viewer.ViewModels;
 
@@ -8,10 +11,19 @@ public partial class MainWindowViewModel : ViewModelBase
     public ProfilesPanelViewModel ProfilesPanel { get; }
     public MatchHistoryPanelViewModel MatchHistory { get; }
 
+    public IAsyncRelayCommand RefreshGamesCommand { get; }
+
     public MainWindowViewModel(IRiotApiService riotApiService)
     {
         MatchHistory = new MatchHistoryPanelViewModel();
         ProfilesPanel = new ProfilesPanelViewModel(riotApiService, MatchHistory);
+
+        RefreshGamesCommand = new AsyncRelayCommand(RefreshGames);
+    }
+
+    private async Task RefreshGames()
+    {
+        await ProfilesPanel.RefreshGames();
     }
 }
   /*

@@ -5,11 +5,18 @@
              x:Class="league_mh_viewer.Views.Profiles.ProfilesPanel"
              x:DataType="vm:ProfilesPanelViewModel">
 
-  <Border Background="{StaticResource BrushSurface}" CornerRadius="16" Padding="16">
-    <Grid RowDefinitions="Auto,Auto,*">
-      <TextBlock Text="Profiles" Classes="section" />
+  <Border Background="{StaticResource BrushSurface}"
+          CornerRadius="16"
+          Padding="16">
 
-      <StackPanel Grid.Row="1" Spacing="8" Margin="0 0 0 16">
+    <Grid RowDefinitions="Auto,Auto,*">
+      <TextBlock Text="Profiles"
+                 Classes="section" />
+
+      <StackPanel Grid.Row="1"
+                  Spacing="8"
+                  Margin="0 0 0 16">
+
         <TextBox PlaceholderText="Riot name"
                  Text="{Binding Name, Mode=TwoWay}" />
 
@@ -21,26 +28,24 @@
                 Command="{Binding AddProfileCommand}" />
       </StackPanel>
 
-<ScrollViewer Grid.Row="2"
-              VerticalScrollBarVisibility="Auto"
-              HorizontalScrollBarVisibility="Disabled">
+      <ScrollViewer Grid.Row="2"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Disabled">
 
-    <ItemsControl ItemsSource="{Binding Profiles}">
-
-        <ItemsControl.ItemsPanel>
+        <ItemsControl ItemsSource="{Binding Profiles}">
+          <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <StackPanel Spacing="8"/>
+              <StackPanel Spacing="8" />
             </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
+          </ItemsControl.ItemsPanel>
 
-        <ItemsControl.ItemTemplate>
+          <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <profiles:ProfileCard />
+              <profiles:ProfileCard />
             </DataTemplate>
-        </ItemsControl.ItemTemplate>
-
-    </ItemsControl>
-</ScrollViewer>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </ScrollViewer>
     </Grid>
   </Border>
 </UserControl>
