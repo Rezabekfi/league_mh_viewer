@@ -61,8 +61,8 @@ public class RiotApiService : IRiotApiService
 
   public async Task<LeagueProfileItem> GetLeagueProfileAsync(string summonerName, string tag, Region region)
   {
-    string encodedName = WebUtility.UrlEncode(summonerName);
-    string encodedTag = WebUtility.UrlEncode(tag);
+    string encodedName = Uri.EscapeDataString(summonerName);
+    string encodedTag = Uri.EscapeDataString(tag);
 
     string url = string.Format(
       AccountEndpoint,
