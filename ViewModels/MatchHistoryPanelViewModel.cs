@@ -29,6 +29,7 @@ public partial class MatchHistoryPanelViewModel : ViewModelBase
   private void ReplaceMatches(IEnumerable<MatchCardViewModel> newMatches)
   {
     Matches.Clear();
+    newMatches = newMatches.OrderByDescending(m => m.Match.GameCreation);
     foreach (var match in newMatches)
     {
       Matches.Add(match);

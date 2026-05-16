@@ -16,6 +16,7 @@ public enum Role
 
 public class MatchItem
 {
+  public string GameId { get; set; } = string.Empty;
   public bool Win { get; set; }
   public string Date { get; set; } = string.Empty;
   public long GameCreation { get; set; }

@@ -9,4 +9,8 @@ public interface IRiotApiService
     Task<LeagueProfileItem> GetLeagueProfileAsync(string summonerName, string tag, Region region); 
 
     Task<List<MatchItem>> GetMatchHistoryAsync(string puuid, Region region);
+
+    Task<List<MatchItem>> GetMatchDetailsAsync(List<string> matchIds, string puuid, Region region);
+
+    Task<List<string>> GetMatchIdsAsync(string puuid, Region region);
 }

@@ -66,9 +66,21 @@ public partial class ProfilesPanelViewModel : ViewModelBase
       foreach (var profileItem in Profiles.Where(p => p.IsSelected))
       {
         var profile = profileItem.Profile;
-        var newMatchHistory = await _riotApiService.GetMatchHistoryAsync(profile.Puuid, region);
-        profile.MatchHistory = newMatchHistory;
-        allMatches.AddRange(newMatchHistory);
+        // find if there are new matches for this profile
+        List<string> existingMatchIds = profile.MatchHistory.Select(m => m.GameId).ToList();
+        List<string> newMatchIds = await _riotApiService.GetMatchIdsAsync(profile.Puuid, region);
+        var matchesToAdd = newMatchIds.Except(existingMatchIds).ToList();
+
+        if (matchesToAdd.Any())
+        {
+          var newMatches = await _riotApiService.GetMatchDetailsAsync(matchesToAdd, profile.Puuid, region);
+          profile.MatchHistory.AddRange(newMatches);
+          allMatches.AddRange(profile.MatchHistory);
+        }
+        else
+        {
+          allMatches.AddRange(profile.MatchHistory);
+        }
       }
       _matchHistoryViewModel.RefreshMatches(allMatches);
     }

@@ -178,6 +178,7 @@ public class RiotApiService : IRiotApiService
     return await GetMatchDetailsAsync(matchIds, puuid, region);
   }
 
+
   public async Task<List<MatchItem>> GetMatchDetailsAsync(List<string> matchIds, string puuid, Region region)
   {
     List<MatchItem> matchHistory = new();
@@ -215,6 +216,7 @@ public class RiotApiService : IRiotApiService
 
       var match = new MatchItem
       {
+        GameId = matchId,
         Win = searchedPlayer.Win,
         Date = DateTimeOffset
           .FromUnixTimeMilliseconds(matchResponse.Info.GameCreation)
@@ -239,5 +241,27 @@ public class RiotApiService : IRiotApiService
     }
 
     return matchHistory;
+  }
+
+  public async Task<List<string>> GetMatchIdsAsync(string puuid, Region region)
+  {
+    string url = string.Format(
+      MatchHistoryEndpoint,
+      region.ApiRegion.ToString().ToLowerInvariant(),
+      puuid
+    );
+
+    var response = await _httpClient.GetAsync(url);
+
+    if (!response.IsSuccessStatusCode)
+    {
+      throw new HttpRequestException($"Failed to get match IDs. Status: {response.StatusCode}");
+    }
+
+    string json = await response.Content.ReadAsStringAsync();
+
+    var matchIds = JsonSerializer.Deserialize<List<string>>(json, JsonOptions);
+
+    return matchIds ?? new List<string>();
   }
 }
