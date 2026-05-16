@@ -8,33 +8,37 @@ namespace league_mh_viewer.ViewModels;
 
 public partial class MatchCardViewModel : ViewModelBase
 {
-    private readonly StreamGeometry _expandIconDown = AppIcons.ArrowDown;
-    private readonly StreamGeometry _collapseIconUp = AppIcons.ArrowUp;
+  private readonly StreamGeometry _expandIconDown = AppIcons.ArrowDown;
+  private readonly StreamGeometry _collapseIconUp = AppIcons.ArrowUp;
 
-    [ObservableProperty]
-    private MatchItem _match;
+  [ObservableProperty]
+  private MatchItem _match;
 
-    [ObservableProperty]
-    private bool _isExpanded;
+  [ObservableProperty]
+  private bool _isExpanded;
 
-    [ObservableProperty]
-    private string _result;
+  [ObservableProperty]
+  private string _result;
 
-    [ObservableProperty]
-    private Avalonia.Media.StreamGeometry _expandIcon;
+  [ObservableProperty]
+  private string _durationText;
 
-    public MatchCardViewModel(MatchItem match)
-    {
-        Match = match;
-        IsExpanded = false;
-        Result = match.Win ? "Victory" : "Defeat";
-        ExpandIcon = _expandIconDown;
-    }
+  [ObservableProperty]
+  private Avalonia.Media.StreamGeometry _expandIcon;
 
-    [RelayCommand]
-    private void ToggleExpanded()
-    {
-        IsExpanded = !IsExpanded;
-        ExpandIcon = IsExpanded ? _collapseIconUp : _expandIconDown;
-    }
+  public MatchCardViewModel(MatchItem match)
+  {
+    Match = match;
+    IsExpanded = false;
+    Result = match.Win ? "Victory" : "Defeat";
+    ExpandIcon = _expandIconDown;
+    DurationText = Match.Duration.TotalHours >= 1 ? Match.Duration.ToString(@"h\:mm\:ss") : Match.Duration.ToString(@"m\:ss");
+  }
+
+  [RelayCommand]
+  private void ToggleExpanded()
+  {
+    IsExpanded = !IsExpanded;
+    ExpandIcon = IsExpanded ? _collapseIconUp : _expandIconDown;
+  }
 }

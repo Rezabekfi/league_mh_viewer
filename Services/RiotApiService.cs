@@ -222,6 +222,9 @@ public class RiotApiService : IRiotApiService
           .FromUnixTimeMilliseconds(matchResponse.Info.GameCreation)
           .LocalDateTime
           .ToString("dd/MM/yyyy"),
+        DateTime = DateTimeOffset
+          .FromUnixTimeMilliseconds(matchResponse.Info.GameCreation)
+          .LocalDateTime,
         Duration = TimeSpan.FromSeconds(matchResponse.Info.GameDuration),
         GameCreation = matchResponse.Info.GameCreation,
         PlayerStats = PlayerGameStats.FromParticipant(searchedPlayer),
