@@ -5,8 +5,8 @@
              x:DataType="vm:ProfileCardViewModel">
 
   <Border Classes="card">
-    <Grid ColumnDefinitions="*,Auto">
-      <StackPanel Grid.Column="0">
+    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,*">
+        <StackPanel Grid.Column="0" Grid.Row="0">
         <TextBlock Text="{Binding Profile.Name}"
                    FontWeight="SemiBold"
                    FontSize="15" />
@@ -14,7 +14,8 @@
         <TextBlock Text="{Binding Profile.Rank}"
                    Classes="muted" />
       </StackPanel>
-      <ToggleSwitch Grid.Column="1" IsChecked="{Binding IsSelected}" OnContent="" OffContent=""/>
+      <ToggleSwitch Grid.Column="1" Grid.Row="0" IsChecked="{Binding IsSelected}" OnContent="" OffContent=""/>
+      <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Classes="remove" Command="{Binding RemoveProfileCommand}" Content="Remove" Margin="0 8 0 0"/>
     </Grid>
   </Border>
 </UserControl>

@@ -42,7 +42,7 @@ public partial class ProfilesPanelViewModel : ViewModelBase
 
     foreach (var savedProfile in userData.Profiles)
     {
-      await AddProfileExecute(savedProfile.Name, savedProfile.Tag, saveAfterAdd: false, isSelected: false);
+      await AddProfileExecute(savedProfile.Name, savedProfile.Tag, saveAfterAdd: false, isSelected: true);
     }
   }
 
@@ -56,7 +56,7 @@ public partial class ProfilesPanelViewModel : ViewModelBase
 
         _matchHistoryViewModel.SetMatches(profile.MatchHistory);
 
-        Profiles.Add(new ProfileCardViewModel(profile, isSelected, OnProfileSelectionChanged));
+        Profiles.Add(new ProfileCardViewModel(profile, isSelected, OnProfileSelectionChanged, RemoveProfile));
 
         if (saveAfterAdd)
         {
@@ -128,5 +128,12 @@ public partial class ProfilesPanelViewModel : ViewModelBase
       Console.WriteLine($"Error refreshing games: {ex.Message}");
     }
 
+  }
+
+  private async Task RemoveProfile(ProfileCardViewModel profileToRemove)
+  {
+    Profiles.Remove(profileToRemove);
+    await SaveProfilesAsync();
+    await RefreshGames();
   }
 }
