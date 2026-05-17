@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using league_mh_viewer.Models;
 using league_mh_viewer.Media;
 using Avalonia.Media;
@@ -10,6 +11,9 @@ public partial class MatchCardViewModel : ViewModelBase
 {
   private readonly StreamGeometry _expandIconDown = AppIcons.ArrowDown;
   private readonly StreamGeometry _collapseIconUp = AppIcons.ArrowUp;
+
+  public ObservableCollection<PlayerGameStats> AllyPlayers { get; } = new();
+  public ObservableCollection<PlayerGameStats> EnemyPlayers { get; } = new();
 
   [ObservableProperty]
   private MatchItem _match;
@@ -33,6 +37,20 @@ public partial class MatchCardViewModel : ViewModelBase
     Result = match.Win ? "Victory" : "Defeat";
     ExpandIcon = _expandIconDown;
     DurationText = Match.Duration.TotalHours >= 1 ? Match.Duration.ToString(@"h\:mm\:ss") : Match.Duration.ToString(@"m\:ss");
+    InitializePlayerStats(match);
+  }
+
+  private void InitializePlayerStats(MatchItem match)
+  {
+    foreach (var player in match.AllyTeam)
+    {
+      AllyPlayers.Add(player);
+    }
+
+    foreach (var player in match.EnemyTeam)
+    {
+      EnemyPlayers.Add(player);
+    }
   }
 
   [RelayCommand]

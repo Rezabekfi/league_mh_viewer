@@ -10,35 +10,40 @@
 
     <StackPanel>
       <Grid ColumnDefinitions="50,*,*,*,*,Auto,Auto">
-        <Image Grid.Column="0" Source="{Binding Match.PlayerStats.ChampionIcon}"/>
+        <Border Grid.Column="0" Width="48" CornerRadius="24" ClipToBounds="True">
+          <Image Source="{Binding Match.PlayerStats.ChampionIcon}"/>
+        </Border>
 
         <StackPanel Grid.Column="1"
+                    VerticalAlignment="Center" 
                     Margin="12 0">
 
           <TextBlock Text="{Binding Result}"
                      Classes="result" />
 
           <TextBlock Text="{Binding Match.PlayerStats.ChampionName}"
-                     Classes="champion" />
+                     Classes="champion"
+                     />
         </StackPanel>
 
-        <StackPanel Grid.Column="2">
-          <TextBlock Text="{Binding Match.PlayerStats.SummonerName}" />
+        <StackPanel Grid.Column="2" VerticalAlignment="Center" >
+          <TextBlock Text="{Binding Match.PlayerStats.Name}"
+          ToolTip.Tip="{Binding Match.PlayerStats.SummonerName}" />
           <TextBlock Text="{Binding Match.DateTime, StringFormat='{}{0:dd.MM HH:mm}'}" />
         </StackPanel>
 
-        <StackPanel Grid.Column="3">
-          <TextBlock Text="{Binding DurationText}" />
+        <StackPanel Grid.Column="3" VerticalAlignment="Center">
+          <TextBlock Text="{Binding DurationText}" VerticalAlignment="Center" />
         </StackPanel>
         <StackPanel Grid.Column="4"
-                    Orientation="Horizontal">
+                    Orientation="Horizontal" VerticalAlignment="Center">
 
           <TextBlock Text="Score" />
           <TextBlock Text="{Binding Match.PlayerStats.ScoreText}" />
         </StackPanel>
 
         <StackPanel Grid.Column="5"
-                    Margin="12 0">
+                    Margin="12 0" VerticalAlignment="Center">
 
           <TextBlock Text="CS" />
           <TextBlock Text="{Binding Match.PlayerStats.CS}" />
@@ -54,22 +59,101 @@
         </Button>
       </Grid>
 
-      <Grid ColumnDefinitions="*,*,*,*"
-            IsVisible="{Binding IsExpanded}"
-            Margin="12 12 12 0">
+      <Grid IsVisible="{Binding IsExpanded}"
+      Margin="12 12 12 0"
+      ColumnDefinitions="*,24,*">
 
-        <TextBlock Grid.Column="0"
-                   Text="YO" />
+  <!-- Left team -->
+  <ItemsControl Grid.Column="0"
+                ItemsSource="{Binding AllyPlayers}">
+    <ItemsControl.ItemTemplate>
+      <DataTemplate>
+        <Grid ColumnDefinitions="32,*,120,60,70"
+              Margin="0 4">
 
-        <TextBlock Grid.Column="1"
-                   Text="YO" />
+          <!-- Champion icon -->
+          <Image Grid.Column="0"
+                 Width="28"
+                 Height="28"
+                 VerticalAlignment="Center"
+                 Source="{Binding ChampionIcon}" />
 
-        <TextBlock Grid.Column="2"
-                   Text="YO" />
+          <!-- Champion name -->
+          <TextBlock Grid.Column="1"
+                     Margin="8 0"
+                     VerticalAlignment="Center"
+                     Text="{Binding ChampionName}" />
 
-        <TextBlock Grid.Column="3"
-                   Text="YO" />
-      </Grid>
-    </StackPanel>
+          <!-- Player name -->
+          <TextBlock Grid.Column="2"
+                     Margin="8 0"
+                     VerticalAlignment="Center"
+                     Text="{Binding Name}"
+                     ToolTip.Tip="{Binding SummonerName}"
+                     TextTrimming="CharacterEllipsis" />
+
+          <!-- CS -->
+          <TextBlock Grid.Column="3"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     Text="{Binding CS, StringFormat='CS {0}'}" />
+
+          <!-- Score -->
+          <TextBlock Grid.Column="4"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Right"
+                     Text="{Binding ScoreText}" />
+        </Grid>
+      </DataTemplate>
+    </ItemsControl.ItemTemplate>
+  </ItemsControl>
+
+  <!-- Divider -->
+  <Border Grid.Column="1"
+          Width="1"
+          HorizontalAlignment="Center"
+          Background="{DynamicResource ThemeBorderLowBrush}" />
+
+  <!-- Right team -->
+  <ItemsControl Grid.Column="2"
+                ItemsSource="{Binding EnemyPlayers}">
+    <ItemsControl.ItemTemplate>
+      <DataTemplate>
+        <Grid ColumnDefinitions="32,*,120,60,70"
+              Margin="0 4">
+
+          <Image Grid.Column="0"
+                 Width="28"
+                 Height="28"
+                 VerticalAlignment="Center"
+                 Source="{Binding ChampionIcon}" />
+
+          <TextBlock Grid.Column="1"
+                     Margin="8 0"
+                     VerticalAlignment="Center"
+                     Text="{Binding ChampionName}" />
+
+          <TextBlock Grid.Column="2"
+                     Margin="8 0"
+                     VerticalAlignment="Center"
+                     Text="{Binding Name}"
+                     ToolTip.Tip="{Binding SummonerName}"
+                     TextTrimming="CharacterEllipsis" />
+
+          <TextBlock Grid.Column="3"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     Text="{Binding CS, StringFormat='CS {0}'}" />
+
+          <TextBlock Grid.Column="4"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Right"
+                     Text="{Binding ScoreText}" />
+        </Grid>
+      </DataTemplate>
+    </ItemsControl.ItemTemplate>
+  </ItemsControl>
+
+</Grid>    </StackPanel>
   </Border>
 </UserControl>

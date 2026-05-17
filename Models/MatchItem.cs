@@ -32,6 +32,8 @@ public class MatchItem
 
 public class PlayerGameStats
 {
+  public string Name { get; set; } = string.Empty;
+  public string Tag { get; set; } = string.Empty;
   public string SummonerName { get; set; } = string.Empty;
   public string ChampionName { get; set; } = string.Empty;
   public string Puuid { get; set; } = string.Empty;
@@ -52,6 +54,8 @@ public class PlayerGameStats
       SummonerName = !string.IsNullOrWhiteSpace(participant.RiotIdGameName)
         ? $"{participant.RiotIdGameName}#{participant.RiotIdTagLine}"
         : participant.SummonerName,
+      Tag = participant.RiotIdTagLine,
+      Name = participant.RiotIdGameName,
       Puuid = participant.Puuid,
       ChampionName = participant.ChampionName,
       Kills = participant.Kills,

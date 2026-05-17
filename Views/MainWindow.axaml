@@ -17,7 +17,7 @@
     </Border>
 
     <Grid Grid.Row="1"
-          ColumnDefinitions="280,*"
+          ColumnDefinitions="250,*"
           Margin="20"
           ColumnSpacing="20">
 
