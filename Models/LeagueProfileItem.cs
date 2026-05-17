@@ -1,13 +1,16 @@
 using System.Collections.Generic;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace league_mh_viewer.Models;
 
-public class LeagueProfileItem
+public partial class LeagueProfileItem : ObservableObject
 {
+  [ObservableProperty]
+  private RankItem _rank;
+
   public string Name { get; set; }
   public string Tag { get; set; }
   public string Puuid { get; set; }
-  public RankItem Rank { get; set; }
   public List<MatchItem> MatchHistory { get; set; }
   public ServerRegion ServerRegion { get; set; }
 

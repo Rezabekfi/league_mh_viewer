@@ -13,4 +13,6 @@ public interface IRiotApiService
     Task<List<MatchItem>> GetMatchDetailsAsync(List<string> matchIds, string puuid, Region region);
 
     Task<List<string>> GetMatchIdsAsync(string puuid, Region region);
+
+    Task<RankItem> GetRankAsync(string puuid, Region region);
 }

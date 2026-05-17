@@ -103,14 +103,13 @@ public partial class ProfilesPanelViewModel : ViewModelBase
 
   public async Task RefreshGames()
   {
-    var region = new Region("EUW1");
     try
     {
       List<MatchItem> allMatches = new List<MatchItem>();
       foreach (var profileItem in Profiles.Where(p => p.IsSelected))
       {
         var profile = profileItem.Profile;
-        // find if there are new matches for this profile
+        var region = new Region(profile.ServerRegion);
         List<string> existingMatchIds = profile.MatchHistory.Select(m => m.GameId).ToList();
         List<string> newMatchIds = await _riotApiService.GetMatchIdsAsync(profile.Puuid, region);
         var matchesToAdd = newMatchIds.Except(existingMatchIds).ToList();
@@ -125,6 +124,7 @@ public partial class ProfilesPanelViewModel : ViewModelBase
         {
           allMatches.AddRange(profile.MatchHistory);
         }
+        await CheckRankChangeAsync(profile, region);
       }
       _matchHistoryViewModel.RefreshMatches(allMatches);
     }
@@ -132,9 +132,17 @@ public partial class ProfilesPanelViewModel : ViewModelBase
     {
       Console.WriteLine($"Error refreshing games: {ex.Message}");
     }
-
   }
 
+  private async Task CheckRankChangeAsync(LeagueProfileItem profile, Region region)
+  {
+    var latestRank = await _riotApiService.GetRankAsync(profile.Puuid, region);
+    if (latestRank != profile.Rank)
+    {
+      profile.Rank = latestRank;
+    }
+  }
+  
   private async Task RemoveProfile(ProfileCardViewModel profileToRemove)
   {
     Profiles.Remove(profileToRemove);
