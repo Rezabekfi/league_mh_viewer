@@ -13,10 +13,10 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public IAsyncRelayCommand RefreshGamesCommand { get; }
 
-    public MainWindowViewModel(IRiotApiService riotApiService)
+    public MainWindowViewModel(IRiotApiService riotApiService, UserDataService userDataService)
     {
         MatchHistory = new MatchHistoryPanelViewModel();
-        ProfilesPanel = new ProfilesPanelViewModel(riotApiService, MatchHistory);
+        ProfilesPanel = new ProfilesPanelViewModel(riotApiService, MatchHistory, userDataService);
 
         RefreshGamesCommand = new AsyncRelayCommand(RefreshGames);
     }

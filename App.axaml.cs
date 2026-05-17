@@ -32,6 +32,7 @@ public partial class App : Application
 
     serviceCollection.AddSingleton<IConfiguration>(configuration);
     serviceCollection.AddSingleton<IRiotApiService, RiotApiService>();
+    serviceCollection.AddSingleton<UserDataService>();
     serviceCollection.AddTransient<MainWindowViewModel>();
 
     var services = serviceCollection.BuildServiceProvider();

@@ -16,13 +16,17 @@ public partial class ProfileCardViewModel : ViewModelBase
   [ObservableProperty]
   private bool _isSelected;
 
-  public ProfileCardViewModel(LeagueProfileItem profile,
+  public ProfileCardViewModel(LeagueProfileItem profile, bool isSelected = true,
       Func<ProfileCardViewModel, Task>? onSelectionChanged = null)
   {
     Profile = profile;
     _onSelectionChanged = onSelectionChanged;
 
-    _isSelected = true;
+    _isSelected = isSelected;
+    if (!isSelected)
+    {
+      _ = _onSelectionChanged?.Invoke(this);
+    }
   }
 
   partial void OnIsSelectedChanged(bool value)

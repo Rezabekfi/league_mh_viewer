@@ -14,6 +14,7 @@ public partial class ProfilesPanelViewModel : ViewModelBase
 {
   private readonly IRiotApiService _riotApiService;
   private readonly MatchHistoryPanelViewModel _matchHistoryViewModel;
+  private readonly UserDataService _userDataService;
 
   public ObservableCollection<ProfileCardViewModel> Profiles { get; } = new();
 
@@ -25,31 +26,69 @@ public partial class ProfilesPanelViewModel : ViewModelBase
 
   public ProfilesPanelViewModel(
       IRiotApiService riotApiService,
-      MatchHistoryPanelViewModel matchHistoryViewModel)
+      MatchHistoryPanelViewModel matchHistoryViewModel,
+      UserDataService userDataService)
   {
       _riotApiService = riotApiService;
       _matchHistoryViewModel = matchHistoryViewModel;
+      _userDataService = userDataService;
+
+      _ = LoadProfilesAsync();
   }
 
-  [RelayCommand]
-  private async Task AddProfile()
+  private async Task LoadProfilesAsync()
+  {
+    var userData = await _userDataService.LoadUserDataAsync();
+
+    foreach (var savedProfile in userData.Profiles)
+    {
+      await AddProfileExecute(savedProfile.Name, savedProfile.Tag, saveAfterAdd: false, isSelected: false);
+    }
+  }
+
+  private async Task AddProfileExecute(string name, string tag, bool saveAfterAdd = true, bool isSelected = true)
   {
     var region = new Region("EUW1");
 
     try
     {
-      var profile = await _riotApiService.GetLeagueProfileAsync(Name, Tag, region);
+        var profile = await _riotApiService.GetLeagueProfileAsync(name, tag, region);
 
-      _matchHistoryViewModel.SetMatches(profile.MatchHistory);
+        _matchHistoryViewModel.SetMatches(profile.MatchHistory);
 
-      Profiles.Add(new ProfileCardViewModel((profile), OnProfileSelectionChanged));
+        Profiles.Add(new ProfileCardViewModel(profile, isSelected, OnProfileSelectionChanged));
 
-      Console.WriteLine($"Added profile: {Name}#{Tag}");
+        if (saveAfterAdd)
+        {
+            await SaveProfilesAsync();
+        }
+
+        Console.WriteLine($"Added profile: {name}#{tag}");
     }
     catch (Exception ex)
     {
-      Console.WriteLine($"Error adding profile: {ex.Message}");
+        Console.WriteLine($"Error adding profile: {ex.Message}");
     }
+  }
+
+  private async Task SaveProfilesAsync()
+  {
+      var userData = new UserData
+      {
+          Profiles = Profiles.Select(p => new SavedProfile
+          {
+              Name = p.Profile.Name,
+              Tag = p.Profile.Tag
+          }).ToList()
+      };
+
+      await _userDataService.SaveUserDataAsync(userData);
+  }
+
+  [RelayCommand]
+  private async Task AddProfile()
+  {
+    await AddProfileExecute(Name, Tag);
   }
   
   private async Task OnProfileSelectionChanged(ProfileCardViewModel changedProfile)
