@@ -25,7 +25,7 @@ public partial class App : Application
   { 
     var configuration = new ConfigurationBuilder()
       .SetBasePath(AppContext.BaseDirectory)
-      .AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true)
+      .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
       .Build();
 
     var serviceCollection = new ServiceCollection();
