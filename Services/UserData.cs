@@ -28,7 +28,6 @@ public class UserDataService
         }
 
         var json = await File.ReadAllTextAsync(_filePath);
-
         return JsonSerializer.Deserialize<UserData>(json) ?? new UserData();
     }
 
@@ -52,4 +51,5 @@ public class SavedProfile
 {
     public string Name { get; set; } = "";
     public string Tag { get; set; } = "";
+    public string Region { get; set; } = "";
 }

@@ -20,8 +20,12 @@
         <TextBox PlaceholderText="Riot name"
                  Text="{Binding Name, Mode=TwoWay}" />
 
-        <TextBox PlaceholderText="Tag"
+        <Grid ColumnDefinitions="50*,50*">
+          <TextBox Grid.Column="0" PlaceholderText="Tag"
                  Text="{Binding Tag, Mode=TwoWay}" />
+          <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" ItemsSource="{Binding AvailableRegions}"
+                 SelectedItem="{Binding SelectedRegion}" />
+        </Grid>
 
         <Button Content="Add profile"
                 Classes="primary"

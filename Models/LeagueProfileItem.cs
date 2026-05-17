@@ -9,12 +9,14 @@ public class LeagueProfileItem
   public string Puuid { get; set; }
   public RankItem Rank { get; set; }
   public List<MatchItem> MatchHistory { get; set; }
+  public ServerRegion ServerRegion { get; set; }
 
   public LeagueProfileItem(
     string name,
     string tag,
     string puuid,
     RankItem rank,
+    ServerRegion serverRegion,
     List<MatchItem> matchHistory)
   {
     Name = name;
@@ -22,6 +24,7 @@ public class LeagueProfileItem
     Puuid = puuid;
     Rank = rank;
     MatchHistory = matchHistory;
+    ServerRegion = serverRegion;
   }
 
   public override string ToString()

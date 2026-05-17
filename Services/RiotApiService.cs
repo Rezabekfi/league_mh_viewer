@@ -101,6 +101,7 @@ public class RiotApiService : IRiotApiService
       profileResponse.TagLine,
       profileResponse.Puuid,
       rank,
+      region.ServerRegion,
       matchHistory
     );
   }

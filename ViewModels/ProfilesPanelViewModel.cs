@@ -24,6 +24,11 @@ public partial class ProfilesPanelViewModel : ViewModelBase
   [ObservableProperty]
   private string _tag = "";
 
+  [ObservableProperty]
+  private ServerRegion _selectedRegion = ServerRegion.EUW1;
+
+  public ServerRegion[] AvailableRegions { get; } = Enum.GetValues<ServerRegion>();
+
   public ProfilesPanelViewModel(
       IRiotApiService riotApiService,
       MatchHistoryPanelViewModel matchHistoryViewModel,
@@ -42,17 +47,16 @@ public partial class ProfilesPanelViewModel : ViewModelBase
 
     foreach (var savedProfile in userData.Profiles)
     {
-      await AddProfileExecute(savedProfile.Name, savedProfile.Tag, saveAfterAdd: false, isSelected: true);
+      await AddProfileExecute(savedProfile.Name, savedProfile.Tag, savedProfile.Region, saveAfterAdd: false, isSelected: true);
     }
   }
 
-  private async Task AddProfileExecute(string name, string tag, bool saveAfterAdd = true, bool isSelected = true)
+  private async Task AddProfileExecute(string name, string tag, string region, bool saveAfterAdd = true, bool isSelected = true)
   {
-    var region = new Region("EUW1");
-
     try
     {
-        var profile = await _riotApiService.GetLeagueProfileAsync(name, tag, region);
+        var regionObj = new Region(region);
+        var profile = await _riotApiService.GetLeagueProfileAsync(name, tag, regionObj);
 
         _matchHistoryViewModel.SetMatches(profile.MatchHistory);
 
@@ -78,7 +82,8 @@ public partial class ProfilesPanelViewModel : ViewModelBase
           Profiles = Profiles.Select(p => new SavedProfile
           {
               Name = p.Profile.Name,
-              Tag = p.Profile.Tag
+              Tag = p.Profile.Tag,
+              Region = p.Profile.ServerRegion.ToString()
           }).ToList()
       };
 
@@ -88,7 +93,7 @@ public partial class ProfilesPanelViewModel : ViewModelBase
   [RelayCommand]
   private async Task AddProfile()
   {
-    await AddProfileExecute(Name, Tag);
+    await AddProfileExecute(Name, Tag, SelectedRegion.ToString());
   }
   
   private async Task OnProfileSelectionChanged(ProfileCardViewModel changedProfile)
